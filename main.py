@@ -3,7 +3,6 @@ from typing import Coroutine
 from fastapi import FastAPI
 from starlette.responses import RedirectResponse
 from enum import Enum
-from pydantic import BaseModel
 
 
 
