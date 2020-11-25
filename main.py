@@ -21,17 +21,20 @@ async def url_list():
     return dic
 
 @app.get("/{url_short}")
-async def get_url(url_redirect: str):
-    if dic.get(url_add.url_short) == url_redirect:
-        return RedirectResponse(url = url_add.url)
-    else:
-        return {"message":"not found"}
+async def get_url(shorten: str):
+    for i in dic:
+        if url_add.url_short[i] == shorten:
+            return RedirectResponse(url_add.url_short[i])
+
 
 
 @app.post("/url/add")
-async def add_url(urls: url_add):
-    dic.append(urls)
-    return dic[- 1]
+async def add_url(item: url_add):
+    if item.url_short == 0:
+        item.url_short = str
+    dic.append(item)
+    return item
+
 
 
 @app.get("/redirect")
